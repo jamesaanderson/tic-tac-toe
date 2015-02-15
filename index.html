@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="game.js"></script>
+    <script>
+      $(document).ready(function() {
+        var game = new Game(500, 500);
+        game.drawGrid();
+
+        $('canvas').click(function(e) {
+          game.handleClick();
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <canvas></canvas>
+  </body>
+</html>
