@@ -9,6 +9,14 @@ function TicTacToe() {
                ['c1','b2','a3']];
 }
 
-TicTacToe.prototype.isWin = function(cells) {
+TicTacToe.prototype.isWin = function(player, cells) {
+  for (i in this.wins) {
+    var win = this.wins[i];
 
+    if(cells[win[0]] + cells[win[1]] + cells[win[2]] == player + player + player) {
+      return true;
+    }
+  }
+
+  return false;
 }

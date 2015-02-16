@@ -40,10 +40,20 @@ Game.prototype.handleClick = function(e) {
     cells[findCell(x, y)[0]] = 'x';
     this.drawX(findCell(x, y)[1], findCell(x, y)[2]);
 
+    var ttt = new TicTacToe();
+    if (ttt.isWin('x', cells)) {
+      alert('X Wins');
+    }
+
     this.currentPlayer = 'o';
   } else {
     cells[findCell(x, y)[0]] = 'o';
     this.drawO(findCell(x, y)[1], findCell(x, y)[2]);
+
+    var ttt = new TicTacToe();
+    if (ttt.isWin('o', cells)) {
+      alert('O Wins');
+    }
 
     this.currentPlayer = 'x';
   }
