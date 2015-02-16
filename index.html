@@ -3,21 +3,29 @@
   <head>
     <title>Tic Tac Toe</title>
 
+    <style>
+      body { background-color: black; }
+      canvas { background-color: white }
+    </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="game.js"></script>
+    <script src="tictactoe.js"></script>
     <script>
       $(document).ready(function() {
         var game = new Game(500, 500);
         game.drawGrid();
 
         $('canvas').click(function(e) {
-          game.handleClick();
+          game.handleClick(e)
         });
       });
     </script>
   </head>
 
   <body>
-    <canvas></canvas>
+    <canvas>
+      Your browser does not support HTML5 Canvas.
+    </canvas>
   </body>
 </html>
