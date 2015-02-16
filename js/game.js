@@ -54,7 +54,7 @@ Game.prototype.handleClick = function(e) {
       cell.drawX(this.ctx);
 
       if (ttt.isWin('x', cells)) {
-        this.onWin('x');
+        return this.onWin('x');
       }
 
       if (ttt.isDraw()) {
@@ -71,7 +71,7 @@ Game.prototype.handleClick = function(e) {
       cell.drawO(this.ctx);
 
       if (ttt.isWin('o', cells)) {
-        this.onWin('o');
+        return this.onWin('o');
       }
 
       if (ttt.isDraw()) {
