@@ -46,14 +46,14 @@ Game.prototype.resetGrid = function() {
 
 Game.prototype.handleClick = function(e) {
   var x = e.offsetX
-      y = e.offsetY;
+      y = e.offsetY
    cell = new Cell(x, y)
+   ttt  = new TicTacToe();
 
   if (this.currentPlayer == 'x') {
     cells[cell.name] = 'x';
     cell.drawX(this.ctx);
 
-    var ttt = new TicTacToe();
     if (ttt.isWin('x', cells)) {
       localStorage['xScore']++;
       this.updateScore();
@@ -65,7 +65,6 @@ Game.prototype.handleClick = function(e) {
     cells[cell.name] = 'o';
     cell.drawO(this.ctx);
 
-    var ttt = new TicTacToe();
     if (ttt.isWin('o', cells)) {
       localStorage['oScore']++;
       this.updateScore();
