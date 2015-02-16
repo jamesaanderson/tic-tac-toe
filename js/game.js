@@ -19,12 +19,12 @@ Game.prototype.drawGrid = function() {
   ctx.beginPath();
   ctx.lineWidth = 4;
 
-  for (var i=1; i<=2; i++) {
+  for (var i = 1; i <= 2; i++) {
     ctx.moveTo(166*i, 0);
     ctx.lineTo(166*i, this.width);
   }
 
-  for (var i=1; i<=2; i++) {
+  for (var i = 1; i <= 2; i++) {
     ctx.moveTo(0, 166*i);
     ctx.lineTo(this.width, 166*i);
   }
@@ -47,10 +47,13 @@ Game.prototype.resetGrid = function() {
 Game.prototype.handleClick = function(e) {
   var x = e.offsetX
       y = e.offsetY;
+   cell = findCell(x, y)[0]
+  cellX = findCell(x, y)[1]
+  cellY = findCell(x, y)[2];
 
   if (this.currentPlayer == 'x') {
-    cells[findCell(x, y)[0]] = 'x';
-    this.drawX(findCell(x, y)[1], findCell(x, y)[2]);
+    cells[cell] = 'x';
+    this.drawX(cellX, cellY);
 
     var ttt = new TicTacToe();
     if (ttt.isWin('x', cells)) {
@@ -61,8 +64,8 @@ Game.prototype.handleClick = function(e) {
 
     this.currentPlayer = 'o';
   } else {
-    cells[findCell(x, y)[0]] = 'o';
-    this.drawO(findCell(x, y)[1], findCell(x, y)[2]);
+    cells[cell] = 'o';
+    this.drawO(cellX, cellY);
 
     var ttt = new TicTacToe();
     if (ttt.isWin('o', cells)) {
@@ -75,9 +78,9 @@ Game.prototype.handleClick = function(e) {
   }
 }
 
-Game.prototype.drawX = function(x, y) {
+Game.prototype.drawX = function(cellX, cellY) {
   var ctx = this.ctx;
-  var cord = [[[x, y], [x+165, y+165]], [[x, y+165], [x+165, y]]];
+  var cord = [[[cellX, cellY], [cellX+165, cellY+165]], [[cellX, cellY+165], [cellX+165, cellY]]];
   ctx.beginPath();
 
   for (var i = 0; i < 2; i++) {
@@ -89,12 +92,12 @@ Game.prototype.drawX = function(x, y) {
   ctx.closePath();
 }
 
-Game.prototype.drawO = function(x, y) {
+Game.prototype.drawO = function(cellX, cellY) {
   var ctx = this.ctx;
   ctx.beginPath();
 
   ctx.beginPath();
-  ctx.arc((x+165)-82.5, (y+165)-82.5, 82.5, 82.5, Math.PI*2, true);
+  ctx.arc((cellX+165)-82.5, (cellY+165)-82.5, 82.5, 82.5, Math.PI*2, true);
   ctx.stroke();
   ctx.closePath();
 }
