@@ -20,3 +20,17 @@ TicTacToe.prototype.isWin = function(player) {
 
   return false;
 }
+
+TicTacToe.prototype.isDraw = function() {
+  for (i in this.wins) {
+    var win = this.wins[i];
+
+    if (cells[win[0]] == '' || cells[win[1]] == '' || cells[win[2]] == '') {
+      return false;
+    }
+  }
+
+  if (this.isWin() == false) {
+    return true
+  }
+}

@@ -54,7 +54,15 @@ Game.prototype.handleClick = function(e) {
       if (ttt.isWin('x', cells)) {
         localStorage['xScore']++;
         this.updateScore();
-        this.resetGrid();
+        if (confirm('X Wins. Play again?')) {
+          this.resetGrid();
+        }
+      }
+
+      if (ttt.isDraw()) {
+        if (confirm('Draw. Play again?')) {
+          this.resetGrid();
+        }
       }
 
       this.currentPlayer = 'o';
@@ -67,7 +75,15 @@ Game.prototype.handleClick = function(e) {
       if (ttt.isWin('o', cells)) {
         localStorage['oScore']++;
         this.updateScore();
-        this.resetGrid();
+        if (confirm('O Wins. Play again?')) {
+          this.resetGrid();
+        }
+      }
+
+      if (ttt.isDraw()) {
+        if (confirm('Draw. Play again?')) {
+          this.resetGrid();
+        }
       }
 
       this.currentPlayer = 'x';
