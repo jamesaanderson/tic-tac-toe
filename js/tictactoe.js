@@ -9,7 +9,7 @@ function TicTacToe() {
                ['c1','b2','a3']];
 }
 
-TicTacToe.prototype.isWin = function(player, cells) {
+TicTacToe.prototype.isWin = function(player) {
   for (i in this.wins) {
     var win = this.wins[i];
 

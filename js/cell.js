@@ -52,4 +52,6 @@ Cell.prototype.drawO = function(ctx) {
   ctx.closePath();
 }
 
-
+Cell.prototype.isEmpty = function() {
+  return cells[this.name] == '';
+}

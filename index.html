@@ -6,26 +6,10 @@
     <link rel='stylesheet' type='text/css' href='css/style.css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/game.js"></script>
     <script src="js/tictactoe.js"></script>
     <script src="js/cell.js"></script>
-    <script>
-      $(document).ready(function() {
-        var game = new Game(500, 500);
-        game.drawGrid();
-
-        $('canvas').click(function(e) {
-          game.handleClick(e)
-        });
-
-        if (localStorage['xScore']) {
-          game.updateScore();
-        } else {
-          localStorage['xScore'] = 0;
-          localStorage['oScore'] = 0;
-        }
-      });
-    </script>
   </head>
 
   <body>

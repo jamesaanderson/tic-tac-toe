@@ -1,7 +1,3 @@
-var cells = {'a1': '', 'a2': '', 'a3': '',
-             'b1': '', 'b2': '', 'b3': '',
-             'c1': '', 'c2': '', 'c3': ''};
-
 function Game(width, height) {
   this.width = width;
   this.height = height;
@@ -51,27 +47,31 @@ Game.prototype.handleClick = function(e) {
    ttt  = new TicTacToe();
 
   if (this.currentPlayer == 'x') {
-    cells[cell.name] = 'x';
-    cell.drawX(this.ctx);
+    if (cell.isEmpty()) {
+      cells[cell.name] = 'x';
+      cell.drawX(this.ctx);
 
-    if (ttt.isWin('x', cells)) {
-      localStorage['xScore']++;
-      this.updateScore();
-      this.resetGrid();
+      if (ttt.isWin('x', cells)) {
+        localStorage['xScore']++;
+        this.updateScore();
+        this.resetGrid();
+      }
+
+      this.currentPlayer = 'o';
     }
-
-    this.currentPlayer = 'o';
   } else {
-    cells[cell.name] = 'o';
-    cell.drawO(this.ctx);
+    if (cell.isEmpty()) {
+      cells[cell.name] = 'o';
+      cell.drawO(this.ctx);
 
-    if (ttt.isWin('o', cells)) {
-      localStorage['oScore']++;
-      this.updateScore();
-      this.resetGrid();
+      if (ttt.isWin('o', cells)) {
+        localStorage['oScore']++;
+        this.updateScore();
+        this.resetGrid();
+      }
+
+      this.currentPlayer = 'x';
     }
-
-    this.currentPlayer = 'x';
   }
 }
 
