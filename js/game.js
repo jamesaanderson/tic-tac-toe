@@ -47,13 +47,11 @@ Game.prototype.resetGrid = function() {
 Game.prototype.handleClick = function(e) {
   var x = e.offsetX
       y = e.offsetY;
-   cell = findCell(x, y)[0]
-  cellX = findCell(x, y)[1]
-  cellY = findCell(x, y)[2];
+   cell = new Cell(x, y)
 
   if (this.currentPlayer == 'x') {
-    cells[cell] = 'x';
-    this.drawX(cellX, cellY);
+    cells[cell.name] = 'x';
+    cell.drawX(this.ctx);
 
     var ttt = new TicTacToe();
     if (ttt.isWin('x', cells)) {
@@ -64,8 +62,8 @@ Game.prototype.handleClick = function(e) {
 
     this.currentPlayer = 'o';
   } else {
-    cells[cell] = 'o';
-    this.drawO(cellX, cellY);
+    cells[cell.name] = 'o';
+    cell.drawO(this.ctx);
 
     var ttt = new TicTacToe();
     if (ttt.isWin('o', cells)) {
@@ -78,61 +76,7 @@ Game.prototype.handleClick = function(e) {
   }
 }
 
-Game.prototype.drawX = function(cellX, cellY) {
-  var ctx = this.ctx;
-  var cord = [[[cellX, cellY], [cellX+165, cellY+165]], [[cellX, cellY+165], [cellX+165, cellY]]];
-  ctx.beginPath();
-
-  for (var i = 0; i < 2; i++) {
-    ctx.moveTo(cord[i][0][0], cord[i][0][1]);
-    ctx.lineTo(cord[i][1][0], cord[i][1][1]);
-  }
-
-  ctx.stroke();
-  ctx.closePath();
-}
-
-Game.prototype.drawO = function(cellX, cellY) {
-  var ctx = this.ctx;
-  ctx.beginPath();
-
-  ctx.beginPath();
-  ctx.arc((cellX+165)-82.5, (cellY+165)-82.5, 82.5, 82.5, Math.PI*2, true);
-  ctx.stroke();
-  ctx.closePath();
-}
-
 Game.prototype.updateScore = function() {
   $('#xscore').text(localStorage['xScore']);
   $('#oscore').text(localStorage['oScore']);
-}
-
-function findCell(x, y) {
-  var cell;
-  var x;
-  var y;
-
-  if (y <= 165) {
-    cell = 'a';
-    y = 0;
-  } else if (y <= 330) {
-    cell = 'b';
-    y = 165;
-  } else if (y <= 495) {
-    cell = 'c';
-    y = 330;
-  }
-
-  if (x <= 165) {
-    cell += '1';
-    x = 0;
-  } else if (x <= 330) {
-    cell += '2';
-    x = 165;
-  } else if (x <= 495) {
-    cell += '3';
-    x = 330;
-  }
-
-  return [cell, x, y];
 }
