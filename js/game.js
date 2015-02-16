@@ -17,6 +17,7 @@ function Game(width, height) {
 Game.prototype.drawGrid = function() {
   var ctx = this.ctx;
   ctx.beginPath();
+  ctx.lineWidth = 4;
 
   for (var i=1; i<=2; i++) {
     ctx.moveTo(166*i, 0);
@@ -32,6 +33,16 @@ Game.prototype.drawGrid = function() {
   ctx.closePath();
 }
 
+Game.prototype.resetGrid = function() {
+  // Clear Canvas
+  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+  cells = {'a1': '', 'a2': '', 'a3': '',
+           'b1': '', 'b2': '', 'b3': '',
+           'c1': '', 'c2': '', 'c3': ''};
+  this.drawGrid();
+}
+
 Game.prototype.handleClick = function(e) {
   var x = e.offsetX
       y = e.offsetY;
@@ -42,7 +53,9 @@ Game.prototype.handleClick = function(e) {
 
     var ttt = new TicTacToe();
     if (ttt.isWin('x', cells)) {
-      alert('X Wins');
+      localStorage['xScore'] += 1;
+      this.updateScore();
+      this.resetGrid();
     }
 
     this.currentPlayer = 'o';
@@ -52,7 +65,9 @@ Game.prototype.handleClick = function(e) {
 
     var ttt = new TicTacToe();
     if (ttt.isWin('o', cells)) {
-      alert('O Wins');
+      localStorage['oScore'] += 1;
+      this.updateScore();
+      this.resetGrid();
     }
 
     this.currentPlayer = 'x';
@@ -63,7 +78,6 @@ Game.prototype.drawX = function(x, y) {
   var ctx = this.ctx;
   var cord = [[[x, y], [x+165, y+165]], [[x, y+165], [x+165, y]]];
   ctx.beginPath();
-  ctx.lineWidth = 4;
 
   for (var i = 0; i < 2; i++) {
     ctx.moveTo(cord[i][0][0], cord[i][0][1]);
@@ -82,6 +96,11 @@ Game.prototype.drawO = function(x, y) {
   ctx.arc((x+165)-82.5, (y+165)-82.5, 82.5, 82.5, Math.PI*2, true);
   ctx.stroke();
   ctx.closePath();
+}
+
+Game.prototype.updateScore = function() {
+  $('#xscore').text(localStorage['xScore']);
+  $('#oscore').text(localStorage['oScore']);
 }
 
 function findCell(x, y) {

@@ -1,0 +1,9 @@
+body {
+  background-color: black;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: white;
+}
+
+canvas {
+  background-color: white;
+}

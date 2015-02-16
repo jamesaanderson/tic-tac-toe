@@ -3,14 +3,11 @@
   <head>
     <title>Tic Tac Toe</title>
 
-    <style>
-      body { background-color: black; }
-      canvas { background-color: white }
-    </style>
+    <link rel='stylesheet' type='text/css' href='css/style.css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="game.js"></script>
-    <script src="tictactoe.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/tictactoe.js"></script>
     <script>
       $(document).ready(function() {
         var game = new Game(500, 500);
@@ -19,6 +16,13 @@
         $('canvas').click(function(e) {
           game.handleClick(e)
         });
+
+        if (localStorage['xScore']) {
+          game.updateScore();
+        } else {
+          localStorage['xScore'] = 0;
+          localStorage['oScore'] = 0;
+        }
       });
     </script>
   </head>
@@ -27,5 +31,8 @@
     <canvas>
       Your browser does not support HTML5 Canvas.
     </canvas>
+
+    <h2>X: <span id='xscore'>0</span></h2>
+    <h2>O: <span id='oscore'>0</span></h2>
   </body>
 </html>
