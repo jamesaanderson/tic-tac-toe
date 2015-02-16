@@ -54,11 +54,7 @@ Game.prototype.handleClick = function(e) {
       cell.drawX(this.ctx);
 
       if (ttt.isWin('x', cells)) {
-        localStorage['xScore']++;
-        this.updateScore();
-        if (confirm('X Wins. Play again?')) {
-          return this.resetGrid();
-        }
+        this.onWin('x');
       }
 
       if (ttt.isDraw()) {
@@ -75,11 +71,7 @@ Game.prototype.handleClick = function(e) {
       cell.drawO(this.ctx);
 
       if (ttt.isWin('o', cells)) {
-        localStorage['oScore']++;
-        this.updateScore();
-        if (confirm('O Wins. Play again?')) {
-          return this.resetGrid();
-        }
+        this.onWin('o');
       }
 
       if (ttt.isDraw()) {
@@ -90,6 +82,14 @@ Game.prototype.handleClick = function(e) {
 
       this.currentPlayer = 'x';
     }
+  }
+}
+
+Game.prototype.onWin = function(player) {
+  localStorage[player + 'Score']++;
+  this.updateScore();
+  if (confirm(player.toUpperCase() + ' Wins. Play again?')) {
+    return this.resetGrid();
   }
 }
 
