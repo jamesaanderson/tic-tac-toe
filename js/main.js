@@ -3,7 +3,7 @@ var cells = {'a1': '', 'a2': '', 'a3': '',
              'c1': '', 'c2': '', 'c3': ''};
 
 $(document).ready(function() {
-  var game = new Game(500, 500);
+  var game = new Game();
   game.drawGrid();
 
   $('canvas').click(function(e) {

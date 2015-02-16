@@ -1,6 +1,6 @@
-function Game(width, height) {
-  this.width = width;
-  this.height = height;
+function Game() {
+  this.width = 500;
+  this.height = 500;
   this.canvas = $('canvas')[0];
   this.canvas.width = this.width;
   this.canvas.height = this.height;
@@ -37,6 +37,7 @@ Game.prototype.resetGrid = function() {
            'b1': '', 'b2': '', 'b3': '',
            'c1': '', 'c2': '', 'c3': ''};
 
+  this.currentPlayer = 'x';
   this.drawGrid();
 }
 
@@ -55,13 +56,13 @@ Game.prototype.handleClick = function(e) {
         localStorage['xScore']++;
         this.updateScore();
         if (confirm('X Wins. Play again?')) {
-          this.resetGrid();
+          return this.resetGrid();
         }
       }
 
       if (ttt.isDraw()) {
         if (confirm('Draw. Play again?')) {
-          this.resetGrid();
+          return this.resetGrid();
         }
       }
 
@@ -76,13 +77,13 @@ Game.prototype.handleClick = function(e) {
         localStorage['oScore']++;
         this.updateScore();
         if (confirm('O Wins. Play again?')) {
-          this.resetGrid();
+          return this.resetGrid();
         }
       }
 
       if (ttt.isDraw()) {
         if (confirm('Draw. Play again?')) {
-          this.resetGrid();
+          return this.resetGrid();
         }
       }
 
