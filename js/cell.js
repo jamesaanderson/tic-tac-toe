@@ -46,8 +46,10 @@ Cell.prototype.drawX = function(ctx) {
 Cell.prototype.drawO = function(ctx) {
   ctx.beginPath();
 
-  ctx.beginPath();
   ctx.arc((this.x+165)-82.5, (this.y+165)-82.5, 82.5, 82.5, Math.PI*2, true);
+
   ctx.stroke();
   ctx.closePath();
 }
+
+
