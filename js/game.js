@@ -36,10 +36,11 @@ Game.prototype.drawGrid = function() {
 Game.prototype.resetGrid = function() {
   // Clear Canvas
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+  // Clear Positions
   cells = {'a1': '', 'a2': '', 'a3': '',
            'b1': '', 'b2': '', 'b3': '',
            'c1': '', 'c2': '', 'c3': ''};
+
   this.drawGrid();
 }
 
@@ -53,7 +54,7 @@ Game.prototype.handleClick = function(e) {
 
     var ttt = new TicTacToe();
     if (ttt.isWin('x', cells)) {
-      localStorage['xScore'] += 1;
+      localStorage['xScore']++;
       this.updateScore();
       this.resetGrid();
     }
@@ -65,7 +66,7 @@ Game.prototype.handleClick = function(e) {
 
     var ttt = new TicTacToe();
     if (ttt.isWin('o', cells)) {
-      localStorage['oScore'] += 1;
+      localStorage['oScore']++;
       this.updateScore();
       this.resetGrid();
     }
